@@ -18,8 +18,8 @@ contract TakeMeFromWallet is
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
 
     constructor()
-        ERC20("BOB STUCK IN CAVE", "BOB")
-        ERC20Permit("BOB STUCK IN CAVE")
+        ERC20("TEST TEST", "TEST")
+        ERC20Permit("TEST TEST")
     {
         _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);
         _setupRole(PAUSER_ROLE, msg.sender);

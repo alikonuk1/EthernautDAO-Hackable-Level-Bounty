@@ -689,8 +689,8 @@ contract ProofContract is
     using SafeERC20 for IERC20;
 
 
-    IERC20 public immutable BOB_TOKEN; //staking token
-    uint256 public immutable MIN_BOB_TOKEN = 1 ether;
+    IERC20 public immutable TEST_TOKEN; //staking token
+    uint256 public immutable MIN_TEST_TOKEN = 1 ether;
     address public winner;
     uint256 public duration = 604800; // 1 week
     struct UserData {
@@ -707,11 +707,11 @@ contract ProofContract is
     constructor(
         IERC20 bob_token_address
     ) public {
-        BOB_TOKEN = bob_token_address;
+        TEST_TOKEN = bob_token_address;
     }
 
     function getTokensBack() external onlyOwner nonReentrant {
-        BOB_TOKEN.transfer(msg.sender, BOB_TOKEN.balanceOf(address(this)));
+        TEST_TOKEN.transfer(msg.sender, TEST_TOKEN.balanceOf(address(this)));
     }
 
     function beParticipant() external nonReentrant{
@@ -741,7 +741,7 @@ contract ProofContract is
         require(_user.isParticipant, "not participant");
         require(!_user.hasUserBlacklist, "user has blacklist");
         require(block.timestamp <= _user.userDeadline, "too late");
-        require(BOB_TOKEN.transferFrom(msg.sender, address(this), MIN_BOB_TOKEN), "transfer failed");
+        require(TEST_TOKEN.transferFrom(msg.sender, address(this), MIN_TEST_TOKEN), "transfer failed");
         require(winner == 0x0000000000000000000000000000000000000000);
         _user.lastProcessTime = block.timestamp;
         _user.isSuccessful = true;
