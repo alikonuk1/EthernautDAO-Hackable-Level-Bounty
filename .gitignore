@@ -1,9 +1,6 @@
-cache/
-out/
-
 .env
 
 deploy
 
-out
-cache
+/out
+/cache
